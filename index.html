@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de Produto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .tabs {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ccc;
+    }
+    .tab {
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-weight: 600;
+      color: #444;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .tab.active {
+      border-bottom: 3px solid #0078d4;
+      color: #0078d4;
+    }
+    .tab i {
+      color: inherit;
+      transition: color 0.3s;
+    }
+    .tab-content {
+      display: none;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #505050;
+    }
+    .form-value {
+      background: #f1f3f4;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      color: #2d2d2d;
+    }
+    .icon {
+      font-size: 12px;
+      color: #605e5c;
+    }
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Segoe UI", sans-serif;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .styled-table thead {
+      background-color: #57c1b2;
+      color: white;
+      text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+    .styled-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('identificacao')"><i class="fas fa-id-badge icon"></i>Identificação</button>
+    <button class="tab" onclick="showTab('escopo')"><i class="fas fa-list icon"></i>Escopo</button>
+    <button class="tab" onclick="showTab('estrategia')"><i class="fas fa-bullseye icon"></i>Estratégia</button>
+    <button class="tab" onclick="showTab('qualificacao')"><i class="fas fa-check-circle icon"></i>Qualificação</button>
+  </div>
+
+  <div id="identificacao" class="tab-content active">
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-box icon"></i>Nome do Produto</label>
+      <div class="form-value">Revisão de Grade Tributária  
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-align-left icon"></i>Descrição do Produto</label>
+      <p class="form-value">
+        Analisa e revisa a tributação aplicada aos produtos e serviços (NCM, CST, CFOP, alíquotas), corrigindo erros que podem gerar pagamento indevido de tributos ou risco de autuação, com foco em conformidade e economia fiscal.
+      </p>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-barcode icon"></i>Código</label>
+      <div class="form-value">TAX008</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-sitemap icon"></i>Área</label>
+      <div class="form-value">Gestão Tributária</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-bomb icon"></i>Classificação BCG</label>
+      <div class="form-value">Abacaxi</div>
+    </div>
+    </div>
+
+  </div>
+
+  <div id="escopo" class="tab-content">
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-file-alt icon"></i>Escopo</label>
+      <div class="form-value">
+        <ol data-start="102" data-end="1141">
+          <li data-start="102" data-end="277" class="" style="">
+          <p data-start="105" data-end="277" class=""><strong data-start="105" data-end="139">Reunião de Alinhamento Inicial</strong><br data-start="139" data-end="142">
+          Entendimento do modelo operacional, sistema utilizado e especificidades do cliente para direcionar a análise de forma personalizada.</p>
+          </li>
+          <li data-start="279" data-end="451" class="" style="">
+          <p data-start="282" data-end="451" class=""><strong data-start="282" data-end="320">Levantamento de Documentos Fiscais</strong><br data-start="320" data-end="323">
+          Coleta de SPED ICMS, SPED Contribuições e demonstrativos contábeis necessários para uma análise fiscal detalhada e assertiva.</p>
+          </li>
+          <li data-start="453" data-end="632" class="" style="">
+          <p data-start="456" data-end="632" class=""><strong data-start="456" data-end="496">Mapeamento da Grade Tributária Atual</strong><br data-start="496" data-end="499">
+          Identificação dos códigos fiscais (CST, CFOP, alíquotas) utilizados nas operações, mapeando possíveis inconsistências tributárias.</p>
+          </li>
+          <li data-start="634" data-end="794" class="" style="">
+          <p data-start="637" data-end="794" class=""><strong data-start="637" data-end="670">Análise Técnica e Diagnóstico</strong><br data-start="670" data-end="673">
+          Avaliação da conformidade tributária com base na legislação vigente, identificando riscos e oportunidades de correção.</p>
+          </li>
+          <li data-start="796" data-end="965" class="" style="">
+          <p data-start="799" data-end="965" class=""><strong data-start="799" data-end="827">Recomendações de Ajustes</strong><br data-start="827" data-end="830">
+          Elaboração de relatório com inconsistências identificadas e proposta de adequações para garantir segurança fiscal e aderência legal.</p>
+          </li>
+          <li data-start="967" data-end="1141" class="" style="">
+          <p data-start="970" data-end="1141" class=""><strong data-start="970" data-end="1003">Orientação para Implementação</strong><br data-start="1003" data-end="1006">
+          Apoio consultivo na aplicação prática das correções no sistema e processos, promovendo melhoria contínua e prevenção de novos erros.</p>
+          </li>
+          </ol>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-list-check icon"></i>Problemas que Resolve
+      </label>
+      <div class="form-value">
+        <ol data-start="110" data-end="586">
+          <li data-start="110" data-end="189" class="">
+          <p data-start="113" data-end="189" class="">Uso incorreto de CST, CFOP e alíquotas que gera riscos fiscais e autuações</p>
+          </li>
+          <li data-start="190" data-end="275" class="">
+          <p data-start="193" data-end="275" class="">Tributação indevida de produtos ou serviços, resultando em prejuízos financeiros</p>
+          </li>
+          <li data-start="276" data-end="356" class="">
+          <p data-start="279" data-end="356" class="">Falta de padronização na emissão de notas fiscais entre filiais ou unidades</p>
+          </li>
+          <li data-start="357" data-end="425" class="">
+          <p data-start="360" data-end="425" class="">Inadequação às atualizações constantes da legislação tributária</p>
+          </li>
+          <li data-start="426" data-end="510" class="">
+          <p data-start="429" data-end="510" class="">Perda de oportunidades de economia fiscal por classificação errada de operações</p>
+          </li>
+          <li data-start="511" data-end="586" class="">
+          <p data-start="514" data-end="586" class="">Falhas no sistema ERP que automatizam regras fiscais de forma equivocada</p>
+          </li>
+          </ol>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="	fas fa-trophy icon"></i>Benefícios
+      </label>
+      <div class="form-value">
+        <ol data-start="98" data-end="409">
+          <li data-start="98" data-end="153" class="">
+          <p data-start="101" data-end="153" class="">Redução de riscos fiscais e prevenção de autuações</p>
+          </li>
+          <li data-start="154" data-end="214" class="">
+          <p data-start="157" data-end="214" class="">Correção das regras fiscais aplicadas nas notas fiscais</p>
+          </li>
+          <li data-start="215" data-end="275" class="">
+          <p data-start="218" data-end="275" class="">Maior segurança e conformidade com a legislação vigente</p>
+          </li>
+          <li data-start="276" data-end="342" class="">
+          <p data-start="279" data-end="342" class="">Otimização do uso do sistema ERP com parametrizações corretas</p>
+          </li>
+          <li data-start="343" data-end="409" class="">
+          <p data-start="346" data-end="409" class="">Ganho financeiro com eliminação de tributos pagos indevidamente</p>
+          </li>
+          </ol>
+      </div>
+    </div>
+  </div>
+
+  <div id="estrategia" class="tab-content">
+
+    <div class="form-group">
+        <label class="form-label"><i class="fas fa-fire icon"></i>Prioridade de Venda</label>
+        <div class="form-value">Baixa</div>
+      </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-lightbulb icon"></i>Quando Ofertar</label>
+      <div class="form-value">
+        
+        <ol data-start="96" data-end="422">
+          <li data-start="96" data-end="170" class="">
+          <p data-start="99" data-end="170" class="">Ao identificar inconsistências frequentes na emissão de notas fiscais</p>
+          </li>
+          <li data-start="171" data-end="225" class="">
+          <p data-start="174" data-end="225" class="">Durante processos de auditoria interna ou externa</p>
+          </li>
+          <li data-start="226" data-end="276" class="">
+          <p data-start="229" data-end="276" class="">Na implantação ou troca do sistema ERP/fiscal</p>
+          </li>
+          <li data-start="277" data-end="340" class="">
+          <p data-start="280" data-end="340" class="">Antes de fiscalizações agendadas ou previstas pela Receita</p>
+          </li>
+          <li data-start="341" data-end="422" class="">
+          <p data-start="344" data-end="422" class="">Quando há mudanças no portfólio de produtos ou no regime tributário da empresa</p>
+          </li>
+          </ol>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-gem icon"></i>Proposta de Valor</label>
+      <div class="form-value">A Revisão de Grade Tributária é uma solução estratégica que garante a conformidade das regras fiscais aplicadas nas notas fiscais da sua empresa, eliminando riscos de autuação e desperdícios tributários. Por meio de uma análise técnica aprofundada, mapeamos e corrigimos inconsistências que muitas vezes passam despercebidas até mesmo por equipes experientes. Mais do que um serviço pontual, entregamos segurança fiscal, economia mensurável e inteligência operacional — tudo com a precisão e o método da Funcional.
+
+
+
+
+
+
+    </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-shopping-basket icon"></i>Cross-selling</label>
+      <div class="form-value">
+     
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Produto Complementar</th>
+              <th>Justificativa da Conexão</th>
+              <th>Área Responsável</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Compliance Tributário (TAX001)</td>
+              <td>Valida os processos tributários como um todo, sendo uma continuação natural após a revisão da grade.</td>
+              <td>Gestão Tributária</td>
+            </tr>
+            <tr>
+              <td>Parametrização Contábil/Tributária em Sistema Operacional</td>
+              <td>Garante que os ajustes de CST, CFOP e alíquotas estejam refletidos corretamente no ERP, evitando reincidência de erros.</td>
+              <td>Contabilidade</td>
+            </tr>
+            <tr>
+              <td>Planejamento Tributário Estadual e Federal – Clientes Base</td>
+              <td>Oferece uma visão estratégica após o diagnóstico técnico, aprofundando a análise por estado, NCM e regime.</td>
+              <td>Contabilidade</td>
+            </tr>
+            <tr>
+              <td>Consultoria Tributária, Contábil, Trabalhista e Paralegal</td>
+              <td>Integra os pontos de contato operacionais que impactam direta ou indiretamente a tributação da empresa.</td>
+              <td>Contabilidade</td>
+            </tr>
+            <tr>
+              <td>Auditoria de Obrigações Acessórias (TAX006)</td>
+              <td>Valida se as informações corrigidas na revisão estão sendo refletidas nas declarações acessórias (SPED, DCTF, etc.).</td>
+              <td>Gestão Tributária</td>
+            </tr>
+            <tr>
+              <td>Valuation</td>
+              <td>Após a correção tributária, empresas ganham estrutura e dados para calcular seu valor econômico com mais confiabilidade.</td>
+              <td>Consultoria Empresarial</td>
+            </tr>
+            <tr>
+              <td>Diagnóstico Empresarial</td>
+              <td>Ideal para empresas que fizeram a revisão e agora querem uma visão ampla da saúde organizacional para orientar a gestão.</td>
+              <td>Consultoria Empresarial</td>
+            </tr>
+            <tr>
+              <td>BPM – Gerenciamento de Processos</td>
+              <td>Otimiza os fluxos que impactam diretamente a emissão fiscal, reduzindo retrabalho e riscos operacionais.</td>
+              <td>Consultoria Empresarial</td>
+            </tr>
+            <tr>
+              <td>Compliance Trabalhista e Previdenciária</td>
+              <td>Amplia o escopo de conformidade para além do fiscal, protegendo a empresa de riscos multidisciplinares.</td>
+              <td>Consultoria Empresarial</td>
+            </tr>
+            <tr>
+              <td>Due Diligence</td>
+              <td>Empresas com dados fiscais organizados podem se preparar para fusões, aquisições ou entrada de investidores com mais segurança.</td>
+              <td>Jurídico / Consultoria</td>
+            </tr>
+            <tr>
+              <td>Defesas, Impugnações e Recursos Administrativos</td>
+              <td>Em casos em que a revisão identifique erros passados já autuados ou em risco, essa defesa é essencial.</td>
+              <td>Jurídico</td>
+            </tr>
+            <tr>
+              <td>Assessoria em Crédito Agro / Debêntures / Estruturação de Dívida</td>
+              <td>Clientes que sanaram erros fiscais podem buscar capital com maior credibilidade e organização documental.</td>
+              <td>Soluções Financeiras</td>
+            </tr>
+            <tr>
+              <td>Horas de Desenvolvimento de BI</td>
+              <td>Após a revisão, indicadores podem ser automatizados em dashboards fiscais, oferecendo controle contínuo e tomada de decisão estratégica.</td>
+              <td>BI</td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+      </div>
+    </div>
+  </div>
+
+  <div id="qualificacao" class="tab-content">
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-briefcase icon"></i>Regime Tributário Atendimento</label>
+      <div class="form-value">Lucro Real, Simples Nacional e Lucro Presumido</div>
+    </div>
+    <div class="form-group">
+        <label class="form-label"><i class="fas fa-sync-alt icon"></i>Tipo de Cobrança</label>
+        <div class="form-value">Pontual</div>
+      </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-globe icon"></i>Abrangência Geográfica</label>
+      <div class="form-value">Nacional</div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label"><i class=" fas fa-file-invoice-dollar icon"></i>Faturamento Ideal</label>
+        <div class="form-value">Indiferente</div>
+      </div>
+
+    <div class="form-group">
+        <label class="form-label"><i class="fas fa-paperclip icon"></i>Documentos Solicitados</label>
+        <div class="form-value">
+          <ol data-start="114" data-end="379">
+            <li data-start="114" data-end="149" class="">
+            <p data-start="117" data-end="149" class="">SPED ICMS dos últimos 12 meses</p>
+            </li>
+            <li data-start="150" data-end="194" class="">
+            <p data-start="153" data-end="194" class="">SPED Contribuições dos últimos 12 meses</p>
+            </li>
+            <li data-start="195" data-end="240" class="">
+            <p data-start="198" data-end="240" class="">Relação de produtos com respectivos NCMs</p>
+            </li>
+            <li data-start="241" data-end="280" class="">
+            <p data-start="244" data-end="280" class="">Cadastro fiscal de produtos no ERP</p>
+            </li>
+            <li data-start="281" data-end="333" class="">
+            <p data-start="284" data-end="333" class="">Tabela de CFOPs utilizadas por tipo de operação</p>
+            </li>
+            <li data-start="334" data-end="379" class="">
+            <p data-start="337" data-end="379" class="">Demonstrativos contábeis (DRE e Balancete)</p>
+            </li>
+            </ol>
+                </div>
+        
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"><i class=" fas fa-industry icon"></i>Setores ICP</label>
+                <div class="form-value"> Indústria, Comércio. </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label"><i class="fas fa-exclamation-circle icon"></i>Objeções Mapeadas</label>
+                <div class="form-value">
+                  <table class="styled-table">
+                    <thead>
+                      <tr>
+                        <th>Objeção</th>
+                        <th>O que o cliente quer dizer</th>
+                        <th>Como contornar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>"Acho que já estamos pagando o tributo certo, não vejo erro na nossa tributação."</td>
+                        <td>O cliente acredita que está em conformidade e não vê necessidade de revisar algo que já parece estar correto. Pode também estar receoso de mudanças ou custos desnecessários.</td>
+                        <td>"Entendo que pode parecer que está tudo certo, mas a legislação tributária muda frequentemente, e muitas vezes as empresas não percebem pequenas falhas que, ao longo do tempo, podem resultar em pagamentos indevidos ou até mesmo autuações."</td>
+                      </tr>
+                      <tr>
+                        <td>"Esse tipo de serviço é caro. Já gastamos muito com consultoria tributária."</td>
+                        <td>O cliente está preocupado com o custo do serviço e a relação custo-benefício. Pode estar comparando com outros tipos de consultoria tributária que ele já contratou.</td>
+                        <td>"Compreendo sua preocupação com o orçamento. Mas a revisão tributária é um investimento para garantir que a empresa não esteja pagando tributos indevidos. O custo de não realizar essa revisão pode ser bem maior no futuro, tanto em multas quanto em valores pagos a mais."</td>
+                      </tr>
+                      <tr>
+                        <td>"Isso vai demorar muito, e estamos com muitas coisas para resolver."</td>
+                        <td>O cliente tem a percepção de que o processo será longo e disruptivo, impactando suas operações e agendas já apertadas.</td>
+                        <td>"Entendo que sua agenda está apertada, e justamente por isso a revisão tributária é importante — ela pode evitar que erros fiscais no futuro causem problemas ainda maiores e mais demorados de resolver. Nosso processo é ágil e bem estruturado."</td>
+                      </tr>
+                      <tr>
+                        <td>"Mas a gente já tem um sistema ERP que cuida disso, por que precisaríamos de uma revisão externa?"</td>
+                        <td>O cliente confia no sistema ERP que já possui e acredita que a tecnologia resolve todos os problemas de tributação.</td>
+                        <td>"É ótimo que já tenham um ERP em funcionamento, ele é uma ferramenta fundamental. Porém, sistemas podem ter falhas na parametrização ou estar desatualizados quanto às mudanças nas leis tributárias. A revisão externa garante que o sistema esteja configurado corretamente."</td>
+                      </tr>
+                      <tr>
+                        <td>"Não temos tempo para essa revisão agora. Nosso foco está em outras áreas."</td>
+                        <td>O cliente está priorizando outras necessidades mais urgentes e não vê a revisão tributária como uma prioridade.</td>
+                        <td>"Entendo que o foco precisa estar em várias frentes ao mesmo tempo. Porém, a revisão tributária pode ser feita de forma segmentada, sem comprometer o andamento das outras áreas. Podemos trabalhar de maneira flexível, ajustando o tempo de execução de acordo com a sua agenda."</td>
+                      </tr>
+                      <tr>
+                        <td>"Eu não sei se vale a pena. Como saber se vamos realmente recuperar algum valor?"</td>
+                        <td>O cliente está cético quanto ao retorno financeiro da revisão e se preocupa com o risco de não ver benefícios concretos.</td>
+                        <td>"Essa é uma preocupação válida. A Revisão de Grade Tributária é focada tanto em corrigir erros de tributação quanto em identificar créditos tributários que muitas vezes passam despercebidos. Podemos fazer um diagnóstico inicial sem compromisso."</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                                    
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label"><i class=" fas fa-industry icon"></i>Personas</label>
+                <div class="form-value">
+                    <ul data-start="107" data-end="257">
+                        <li data-start="107" data-end="173" class="" style="">
+                        <p data-start="109" data-end="173" class=""><strong data-start="109" data-end="129">Influenciadores:</strong> Consultor, Controller, Gerente Financeiro</p>
+                        </li>
+                        <li data-start="174" data-end="257" class="" style="">
+                        <p data-start="176" data-end="257" class=""><strong data-start="176" data-end="190">Decisores:</strong> CFO, Proprietários, Sócios</p>
+                        </li>
+                        </ul> </div>
+              </div>
+    <div class="form-group">
+      <label class="form-label"><i class="fas fa-star-half-alt icon"></i>Diferenciais</label>
+      <div class="form-value">Na Funcional, a revisão da grade tributária vai além da validação de códigos: é uma análise estratégica que conecta operação, sistema e legislação fiscal. Atuamos com uma abordagem multidisciplinar, que identifica inconsistências na tributação de produtos, erros de classificação fiscal (NCM, CFOP, CST) e oportunidades de correção que reduzem riscos e evitam pagamentos indevidos.
+
+        Utilizamos mapeamento cruzado entre documentos fiscais, regras do ERP e obrigações acessórias para entregar uma grade limpa, atualizada e aderente à realidade da empresa. Nosso diferencial está na clareza técnica das recomendações, documentação de suporte e plano de ajustes sistêmicos, garantindo que a correção seja não apenas pontual, mas sustentada no longo prazo.
+        
+        Com isso, o cliente conquista segurança fiscal, reduz riscos de autuação e ganha eficiência no processo de emissão e escrituração de notas fiscais.
+        
+        </div>
+    </div>
+  </div>
+
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelector(`.tab[onclick="showTab('${id}')"]`).classList.add('active');
+    }
+  </script>
+</body>
+</html>
