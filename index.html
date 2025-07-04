@@ -710,115 +710,57 @@
 </script>
 
 
-<script>
-  const PASSWORD = "Ficha#Prod2025";
-  const authorizedEmails = [
-    "daniely.paz@funcional.com",
-    "jose@funcional.com.br"
-  ];
-
-  let pendingTabId = null;
-
-  document.addEventListener("DOMContentLoaded", function() {
-    var userEmail = "";
-
-    // Se estiver dentro do SharePoint, pega o e-mail do contexto
-    if (typeof _spPageContextInfo !== "undefined") {
-      userEmail = _spPageContextInfo.userEmail || "";
-    }
-
-    console.log("Usuário logado:", userEmail);
-
-    if (authorizedEmails.includes(userEmail.toLowerCase())) {
-      sessionStorage.setItem("estrategiaUnlocked", "true");
-      console.log("Acesso automático liberado para:", userEmail);
-    }
-
-    const closeBtn = document.querySelector(".close-btn");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", closeModal);
-    }
-
-    window.addEventListener("click", function(event) {
-      const modal = document.getElementById("passwordModal");
-      if (event.target === modal) {
-        closeModal();
-      }
-    });
-  });
-
-  function requestPassword(tabId) {
-    if (sessionStorage.getItem("estrategiaUnlocked") === "true") {
-      showTab(tabId);
-    } else {
-      pendingTabId = tabId;
-
-      var userEmail = "";
-      if (typeof _spPageContextInfo !== "undefined") {
-        userEmail = _spPageContextInfo.userEmail || "";
-      }
-
-      console.log("Verificando acesso para:", userEmail);
-
-      if (authorizedEmails.includes(userEmail.toLowerCase())) {
-        document.getElementById("modalTitle").textContent = "Digite a senha";
-        document.getElementById("passwordInput").style.display = "block";
-        document.getElementById("passwordButton").style.display = "inline-block";
-        document.getElementById("accessDeniedMessage").style.display = "none";
-      } else {
-        document.getElementById("modalTitle").textContent = "Acesso negado";
-        document.getElementById("passwordInput").style.display = "none";
-        document.getElementById("passwordButton").style.display = "none";
-        document.getElementById("accessDeniedMessage").style.display = "block";
-      }
-
-      document.getElementById("passwordModal").style.display = "block";
-      document.getElementById("passwordInput").value = "";
-      document.getElementById("passwordError").style.display = "none";
-    }
-  }
-
-  function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
-    const errorDiv = document.getElementById("passwordError");
-
-    if (input === PASSWORD) {
-      sessionStorage.setItem("estrategiaUnlocked", "true");
-      showTab(pendingTabId);
-      closeModal();
-    } else {
-      errorDiv.textContent = "Senha incorreta. Tente novamente.";
-      errorDiv.style.display = "block";
-    }
-  }
-
-  function closeModal() {
-    document.getElementById("passwordModal").style.display = "none";
-  }
-
-  function showTab(id) {
-    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    const tabButton = document.querySelector(`.tab[onclick*="'${id}'"]`);
-    if (tabButton) {
-      tabButton.classList.add('active');
-    }
-  }
-</script>
-
-
-<div id="passwordModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <h2 id="modalTitle">Digite a senha</h2>
-    <input type="password" id="passwordInput" placeholder="Senha..." />
-    <div id="passwordError"></div>
-    <button id="passwordButton" onclick="checkPassword()">Entrar</button>
-    <div id="accessDeniedMessage">Você não tem acesso a esta aba.</div>
+ <!-- MODAL -->
+  <div id="passwordModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Digite a senha</h2>
+      <input type="password" id="passwordInput" placeholder="Senha..." />
+      <button id="passwordButton" onclick="checkPassword()">Entrar</button>
+      <div id="passwordError"></div>
+    </div>
   </div>
-</div>
 
+  <script>
+    const PASSWORD = "Ficha#Prod2025";
+    let pendingTabId = null;
+
+    function showTab(id) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      const tabButton = document.querySelector(`.tab[onclick*="'${id}'"]`);
+      if (tabButton) tabButton.classList.add('active');
+    }
+
+    function requestPassword(tabId) {
+      if (sessionStorage.getItem("estrategiaUnlocked") === "true") {
+        showTab(tabId);
+      } else {
+        pendingTabId = tabId;
+        document.getElementById("passwordModal").style.display = "block";
+        document.getElementById("passwordInput").value = "";
+        document.getElementById("passwordError").style.display = "none";
+      }
+    }
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const errorDiv = document.getElementById("passwordError");
+      if (input === PASSWORD) {
+        sessionStorage.setItem("estrategiaUnlocked", "true");
+        showTab(pendingTabId);
+        closeModal();
+      } else {
+        errorDiv.textContent = "Senha incorreta. Tente novamente.";
+        errorDiv.style.display = "block";
+      }
+    }
+
+    function closeModal() {
+      document.getElementById("passwordModal").style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
