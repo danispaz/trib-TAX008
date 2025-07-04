@@ -230,13 +230,78 @@
   line-height: 1.5;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+  float: right;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#passwordInput {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#passwordButton {
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#passwordButton:hover {
+  background-color: #005fa3;
+}
+
+#accessDeniedMessage {
+  display: none;
+  color: red;
+  margin-top: 20px;
+}
+
+#passwordError {
+  color: red;
+  margin-top: 10px;
+  display: none;
+}
+
+
   </style>
 </head>
 <body>
   <div class="tabs">
     <button class="tab active" onclick="showTab('identificacao')"><i class="fas fa-id-badge icon"></i>Identificação</button>
     <button class="tab" onclick="showTab('escopo')"><i class="fas fa-list icon"></i>Escopo</button>
-    <button class="tab" onclick="showTab('estrategia')"><i class="fas fa-bullseye icon"></i>Estratégia</button>
+<button class="tab" onclick="requestPassword('estrategia')">
+  <i class="fas fa-bullseye icon"></i>Estratégia
+</button>
+
     <button class="tab" onclick="showTab('qualificacao')"><i class="fas fa-check-circle icon"></i>Qualificação</button>
   </div>
 
@@ -643,5 +708,117 @@
     }, 200); // espera um pouco antes de esconder
   }
 </script>
+
+
+<script>
+  const PASSWORD = "Ficha#Prod2025";
+  const authorizedEmails = [
+    "daniely.paz@funcional.com",
+    "jose@funcional.com.br"
+  ];
+
+  let pendingTabId = null;
+
+  document.addEventListener("DOMContentLoaded", function() {
+    var userEmail = "";
+
+    // Se estiver dentro do SharePoint, pega o e-mail do contexto
+    if (typeof _spPageContextInfo !== "undefined") {
+      userEmail = _spPageContextInfo.userEmail || "";
+    }
+
+    console.log("Usuário logado:", userEmail);
+
+    if (authorizedEmails.includes(userEmail.toLowerCase())) {
+      sessionStorage.setItem("estrategiaUnlocked", "true");
+      console.log("Acesso automático liberado para:", userEmail);
+    }
+
+    const closeBtn = document.querySelector(".close-btn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeModal);
+    }
+
+    window.addEventListener("click", function(event) {
+      const modal = document.getElementById("passwordModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  });
+
+  function requestPassword(tabId) {
+    if (sessionStorage.getItem("estrategiaUnlocked") === "true") {
+      showTab(tabId);
+    } else {
+      pendingTabId = tabId;
+
+      var userEmail = "";
+      if (typeof _spPageContextInfo !== "undefined") {
+        userEmail = _spPageContextInfo.userEmail || "";
+      }
+
+      console.log("Verificando acesso para:", userEmail);
+
+      if (authorizedEmails.includes(userEmail.toLowerCase())) {
+        document.getElementById("modalTitle").textContent = "Digite a senha";
+        document.getElementById("passwordInput").style.display = "block";
+        document.getElementById("passwordButton").style.display = "inline-block";
+        document.getElementById("accessDeniedMessage").style.display = "none";
+      } else {
+        document.getElementById("modalTitle").textContent = "Acesso negado";
+        document.getElementById("passwordInput").style.display = "none";
+        document.getElementById("passwordButton").style.display = "none";
+        document.getElementById("accessDeniedMessage").style.display = "block";
+      }
+
+      document.getElementById("passwordModal").style.display = "block";
+      document.getElementById("passwordInput").value = "";
+      document.getElementById("passwordError").style.display = "none";
+    }
+  }
+
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const errorDiv = document.getElementById("passwordError");
+
+    if (input === PASSWORD) {
+      sessionStorage.setItem("estrategiaUnlocked", "true");
+      showTab(pendingTabId);
+      closeModal();
+    } else {
+      errorDiv.textContent = "Senha incorreta. Tente novamente.";
+      errorDiv.style.display = "block";
+    }
+  }
+
+  function closeModal() {
+    document.getElementById("passwordModal").style.display = "none";
+  }
+
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    const tabButton = document.querySelector(`.tab[onclick*="'${id}'"]`);
+    if (tabButton) {
+      tabButton.classList.add('active');
+    }
+  }
+</script>
+
+
+<div id="passwordModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2 id="modalTitle">Digite a senha</h2>
+    <input type="password" id="passwordInput" placeholder="Senha..." />
+    <div id="passwordError"></div>
+    <button id="passwordButton" onclick="checkPassword()">Entrar</button>
+    <div id="accessDeniedMessage">Você não tem acesso a esta aba.</div>
+  </div>
+</div>
+
+
 </body>
 </html>
